@@ -1,6 +1,8 @@
-import { Flex, Heading } from '@chakra-ui/react';
+import { Flex, Heading, Image } from '@chakra-ui/react';
 import background from '../assets/background.svg';
 import BbqCard from '../components/BbqCard';
+import logo from '../assets/logo.svg';
+import AddNewDate from '../components/AddNewDate';
 
 const Home = () => {
   return (
@@ -10,6 +12,8 @@ const Home = () => {
       backgroundSize="100% auto"
       flexDirection="column"
       justifyContent="center"
+      alignItems="center"
+      boxShadow="lg"
     >
       <Heading textAlign="center" mt="24">
         Agenda de Churras
@@ -18,8 +22,9 @@ const Home = () => {
         <BbqCard />
         <BbqCard />
         <BbqCard />
-        <BbqCard />
+        <AddNewDate />
       </Flex>
+      <Image src={logo} alt="Logo" boxSize="10" m="5" />
     </Flex>
   );
 };
