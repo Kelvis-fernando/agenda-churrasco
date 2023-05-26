@@ -13,7 +13,6 @@ const Home = () => {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
-      boxShadow="lg"
     >
       <Heading textAlign="center" mt="24">
         Agenda de Churras
@@ -24,7 +23,14 @@ const Home = () => {
         <BbqCard />
         <AddNewBbq />
       </Flex>
-      <Image src={logo} alt="Logo" boxSize="10" m="5" />
+      <Image
+        src={logo}
+        alt="Logo"
+        boxSize="10"
+        m="5"
+        position="fixed"
+        bottom="0"
+      />
     </Flex>
   );
 };
