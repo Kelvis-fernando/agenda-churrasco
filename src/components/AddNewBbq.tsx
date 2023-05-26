@@ -1,9 +1,13 @@
-import { Card, Heading, Image } from '@chakra-ui/react';
+import { Card, Heading, Image, useDisclosure } from '@chakra-ui/react';
 import bbqIcon from '../assets/icon_bbq.svg';
+import ModalNewBbq from './ModalNewBbq';
 
-const AddNewDate = () => {
+const AddNewBbq = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Card
+      onClick={onOpen}
       p="10"
       m="3"
       display="flex"
@@ -20,8 +24,9 @@ const AddNewDate = () => {
       <Heading as="h2" fontSize="24">
         Adicionar Churras
       </Heading>
+      <ModalNewBbq onClose={onClose} isOpen={isOpen} />
     </Card>
   );
 };
 
-export default AddNewDate;
+export default AddNewBbq;

@@ -2,7 +2,7 @@ import { Flex, Heading, Image } from '@chakra-ui/react';
 import background from '../assets/background.svg';
 import BbqCard from '../components/BbqCard';
 import logo from '../assets/logo.svg';
-import AddNewDate from '../components/AddNewDate';
+import AddNewBbq from '../components/AddNewBbq';
 
 const Home = () => {
   return (
@@ -22,7 +22,7 @@ const Home = () => {
         <BbqCard />
         <BbqCard />
         <BbqCard />
-        <AddNewDate />
+        <AddNewBbq />
       </Flex>
       <Image src={logo} alt="Logo" boxSize="10" m="5" />
     </Flex>
