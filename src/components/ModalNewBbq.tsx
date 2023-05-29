@@ -9,10 +9,11 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
+  ModalProps,
   Select,
 } from '@chakra-ui/react';
 
-const ModalNewBbq = ({ isOpen, onClose }: any) => {
+const ModalNewBbq = ({ isOpen, onClose }: ModalProps) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />

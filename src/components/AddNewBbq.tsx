@@ -24,7 +24,7 @@ const AddNewBbq = () => {
       <Heading as="h2" fontSize="24">
         Adicionar Churras
       </Heading>
-      <ModalNewBbq onClose={onClose} isOpen={isOpen} />
+      <ModalNewBbq onClose={onClose} isOpen={isOpen} children="" />
     </Card>
   );
 };
