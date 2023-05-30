@@ -1,16 +1,38 @@
 import * as React from 'react';
-import { ChakraProvider, theme } from '@chakra-ui/react';
+import { ChakraProvider, Flex, theme, Image, Heading } from '@chakra-ui/react';
 import Home from './pages/Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './pages/auth/Login';
+import background from './assets/background.svg';
+import logo from './assets/logo.svg';
 
 export const App = () => (
   <ChakraProvider theme={theme}>
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </Router>
+    <Flex
+      backgroundImage={`url(${background})`}
+      backgroundRepeat="no-repeat"
+      backgroundSize="100% auto"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Heading textAlign="center" mt="24">
+        Agenda de Churras
+      </Heading>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Router>
+      <Image
+        src={logo}
+        alt="Logo"
+        boxSize="10"
+        m="5"
+        position="fixed"
+        bottom="0"
+      />
+    </Flex>
   </ChakraProvider>
 );

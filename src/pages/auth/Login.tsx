@@ -1,11 +1,7 @@
-import { Box, Heading } from '@chakra-ui/layout';
+import { Box } from '@chakra-ui/layout';
 
 const Login = () => {
-  return (
-    <Box>
-      <Heading>Login</Heading>
-    </Box>
-  );
+  return <Box></Box>;
 };
 
 export default Login;
