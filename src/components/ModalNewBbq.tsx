@@ -43,7 +43,12 @@ const ModalNewBbq = ({ isOpen, onClose }: ModalProps) => {
             </Select>
             <FormLabel>Data:</FormLabel>
             <Input type="date" />
-            <Button mt="5" bgColor="#FFD836">
+            <Button
+              mt="5"
+              bgColor="#FFD836"
+              fontWeight="bold"
+              _hover={{ bgColor: 'rgba(255, 216, 54, 0.8)' }}
+            >
               Criar
             </Button>
           </FormControl>

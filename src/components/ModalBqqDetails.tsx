@@ -1,11 +1,12 @@
 import {
-  Box,
+  Button,
   Flex,
   Heading,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
+  ModalFooter,
   ModalHeader,
   ModalOverlay,
   ModalProps,
@@ -36,57 +37,35 @@ const ModalBqqDetails = ({ isOpen, onClose }: ModalProps) => {
               <Text>R$280</Text>
             </Flex>
           </Flex>
-          <Box>
-            <Flex
-              justifyContent="space-between"
-              borderBottom="1px solid #FFD836"
-              pb="1"
+          <Flex
+            mt="5"
+            pb="1"
+            borderBottom="1px solid #FFD836"
+            justifyContent="space-between"
+          >
+            <Radio
+              display="flex"
+              flexDirection="row"
+              borderColor="#998220"
+              _checked={{
+                bg: '#FFD836',
+                border: 'none',
+              }}
             >
-              <Radio
-                colorScheme="red"
-                value="1"
-                display="flex"
-                flexDirection="row"
-                justifyContent="space-around"
-              >
-                Alice
-              </Radio>
-              <Text>R$115</Text>
-            </Flex>
-            <Flex
-              justifyContent="space-between"
-              borderBottom="1px solid #FFD836"
-              pb="1"
-            >
-              <Radio
-                colorScheme="red"
-                value="1"
-                display="flex"
-                flexDirection="row"
-                justifyContent="space-around"
-              >
-                Alice
-              </Radio>
-              <Text>R$115</Text>
-            </Flex>
-            <Flex
-              justifyContent="space-between"
-              borderBottom="1px solid #FFD836"
-              pb="1"
-            >
-              <Radio
-                colorScheme="red"
-                value="1"
-                display="flex"
-                flexDirection="row"
-                justifyContent="space-around"
-              >
-                Alice
-              </Radio>
-              <Text>R$115</Text>
-            </Flex>
-          </Box>
+              Alice
+            </Radio>
+            <Text>R$ 120</Text>
+          </Flex>
         </ModalBody>
+        <ModalFooter>
+          <Button
+            bgColor="#FFD836"
+            _hover={{ bgColor: 'rgba(255, 216, 54, 0.8)' }}
+            fontWeight="bold"
+          >
+            Participar
+          </Button>
+        </ModalFooter>
       </ModalContent>
     </Modal>
   );
