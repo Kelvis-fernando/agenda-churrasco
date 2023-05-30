@@ -43,7 +43,7 @@ const BbqCard = () => {
           </Flex>
         </Flex>
       </Card>
-      <ModalBqqDetails onClose={onClose} isOpen={isOpen} children="" />
+      <ModalBqqDetails onCloseModal={onClose} isOpenModal={isOpen} />
     </>
   );
 };
