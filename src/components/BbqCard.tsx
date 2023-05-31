@@ -8,8 +8,9 @@ import {
 } from '@chakra-ui/react';
 import { Users, CurrencyCircleDollar } from '@phosphor-icons/react';
 import ModalBqqDetails from './ModalBqqDetails';
+import { format } from 'date-fns';
 
-const BbqCard = () => {
+const BbqCard = ({ barbecue }: any) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -27,9 +28,9 @@ const BbqCard = () => {
         height=" 192px"
       >
         <Box justifyContent="flex-start" w="100%">
-          <Heading>01/07</Heading>
+          <Heading>{format(new Date(barbecue.newBbq.date), 'dd/MM')}</Heading>
           <Text fontWeight="semibold" mt="3">
-            Niver do Kelvis
+            {barbecue.newBbq.title}
           </Text>
         </Box>
         <Flex justifyContent="space-around" w="100%" mt="10">
@@ -39,7 +40,7 @@ const BbqCard = () => {
           </Flex>
           <Flex alignItems="center">
             <CurrencyCircleDollar size={24} color="#FFD836" />
-            <Text fontWeight="semibold">R$180</Text>
+            <Text fontWeight="semibold">R${barbecue.newBbq.value}</Text>
           </Flex>
         </Flex>
       </Card>
