@@ -1,8 +1,8 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
+import { getDatabase } from 'firebase/database';
 
 // Neste caso deixei as keys em aberto para que qualquer um possa testar, mas o correto e adicionar isto em um .env pois é um dado sensivel da aplicação
-
 const firebaseConfig = {
   apiKey: 'AIzaSyC39dDvNWOzw_v5SnjKALzLhAiCz2zccUE',
   authDomain: 'churras-app-2a545.firebaseapp.com',
@@ -15,3 +15,4 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
+export const db = getDatabase(app);
