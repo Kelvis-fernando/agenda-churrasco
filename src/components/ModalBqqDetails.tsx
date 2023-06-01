@@ -43,12 +43,13 @@ const ModalBqqDetails = ({
               </Flex>
             </Flex>
             <Flex justifyContent="space-between" alignItems="center">
-              <Heading fontSize="24">{barbecue.newBbq.title}</Heading>
+              <Heading fontSize="26">{barbecue.newBbq.title}</Heading>
               <Flex>
                 <CurrencyCircleDollar size={24} color="#FFD836" />
                 <Text>R${barbecue.newBbq.value}</Text>
               </Flex>
             </Flex>
+            <Text mt="3">{barbecue.newBbq.description}</Text>
             <Flex
               mt="5"
               pb="1"
