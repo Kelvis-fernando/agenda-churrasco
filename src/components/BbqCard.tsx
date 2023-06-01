@@ -44,7 +44,7 @@ const BbqCard = ({ barbecue }: any) => {
           </Flex>
         </Flex>
       </Card>
-      <ModalBqqDetails onCloseModal={onClose} isOpenModal={isOpen} />
+      <ModalBqqDetails barbecue={barbecue} onCloseModal={onClose} isOpenModal={isOpen} />
     </>
   );
 };

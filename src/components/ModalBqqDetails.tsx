@@ -16,8 +16,10 @@ import {
 import { CurrencyCircleDollar, Users } from '@phosphor-icons/react';
 import JoinTheBbq from './JoinTheBqq';
 import { ModalBqqDetailsProps } from '../types/ModalBqqDetailsProps';
+import { format } from 'date-fns';
 
 const ModalBqqDetails = ({
+  barbecue,
   isOpenModal,
   onCloseModal,
 }: ModalBqqDetailsProps) => {
@@ -32,17 +34,19 @@ const ModalBqqDetails = ({
           <ModalCloseButton />
           <ModalBody>
             <Flex justifyContent="space-between" alignItems="center">
-              <Heading>01/12</Heading>
+              <Heading>
+                {format(new Date(barbecue.newBbq.date), 'dd/MM')}
+              </Heading>
               <Flex>
                 <Users size={24} color="#FFD836" />
                 <Text>15</Text>
               </Flex>
             </Flex>
             <Flex justifyContent="space-between" alignItems="center">
-              <Heading>Níver do Gui</Heading>
+              <Heading fontSize="24">{barbecue.newBbq.title}</Heading>
               <Flex>
                 <CurrencyCircleDollar size={24} color="#FFD836" />
-                <Text>R$280</Text>
+                <Text>R${barbecue.newBbq.value}</Text>
               </Flex>
             </Flex>
             <Flex
