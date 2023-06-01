@@ -3,3 +3,8 @@ export interface ModalBqqDetailsProps {
   onCloseModal: () => void;
   barbecue: any;
 }
+
+export interface ParticipantsType {
+  name: string;
+  value: number;
+}

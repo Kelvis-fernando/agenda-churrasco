@@ -15,7 +15,10 @@ import {
 } from '@chakra-ui/react';
 import { CurrencyCircleDollar, Users } from '@phosphor-icons/react';
 import JoinTheBbq from './JoinTheBqq';
-import { ModalBqqDetailsProps } from '../types/ModalBqqDetailsProps';
+import {
+  ModalBqqDetailsProps,
+  ParticipantsType,
+} from '../types/ModalBqqDetailsProps';
 import { format } from 'date-fns';
 
 const ModalBqqDetails = ({
@@ -39,7 +42,7 @@ const ModalBqqDetails = ({
               </Heading>
               <Flex>
                 <Users size={24} color="#FFD836" />
-                <Text>15</Text>
+                <Text>{barbecue.newBbq.participants.length - 1}</Text>
               </Flex>
             </Flex>
             <Flex justifyContent="space-between" alignItems="center">
@@ -50,24 +53,41 @@ const ModalBqqDetails = ({
               </Flex>
             </Flex>
             <Text mt="3">{barbecue.newBbq.description}</Text>
-            <Flex
-              mt="5"
-              pb="1"
-              borderBottom="1px solid #FFD836"
-              justifyContent="space-between"
-            >
-              <Radio
-                display="flex"
-                flexDirection="row"
-                borderColor="#998220"
-                _checked={{
-                  bg: '#FFD836',
-                  border: 'none',
-                }}
-              >
-                Alice
-              </Radio>
-              <Text>R$ 120</Text>
+            {barbecue.newBbq.participants.map(
+              (participant: ParticipantsType) => (
+                <Flex
+                  mt="5"
+                  pb="1"
+                  borderBottom="1px solid #FFD836"
+                  justifyContent="space-between"
+                  display={participant.name !== '' ? 'flex' : 'none'}
+                >
+                  <Radio
+                    flexDirection="row"
+                    borderColor="#998220"
+                    _checked={{
+                      bg: '#FFD836',
+                      border: 'none',
+                    }}
+                  >
+                    {participant.name}
+                  </Radio>
+                  <Text>R$ {participant.value}</Text>
+                </Flex>
+              )
+            )}
+            <Flex justifyContent="right" mt="2">
+              <Text mr="3" fontWeight="semibold">
+                Total
+              </Text>
+              <Text fontWeight="bold">
+                {barbecue.newBbq.participants
+                  .map((price: any) => Number(price.value))
+                  .reduce((total: number, actual: number) => {
+                    return total + actual;
+                  }, 0)
+                  .toFixed(2)}
+              </Text>
             </Flex>
           </ModalBody>
           <ModalFooter>
@@ -82,7 +102,7 @@ const ModalBqqDetails = ({
           </ModalFooter>
         </ModalContent>
       </Modal>
-      <JoinTheBbq children="" isOpen={isOpen} onClose={onClose} />
+      <JoinTheBbq isOpen={isOpen} onClose={onClose} barbecue={barbecue} />
     </>
   );
 };

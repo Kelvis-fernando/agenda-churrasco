@@ -10,7 +10,6 @@ import {
   ModalHeader,
   ModalOverlay,
   ModalProps,
-  Select,
 } from '@chakra-ui/react';
 import { db } from '../firebase';
 import { uid } from 'uid';
@@ -21,8 +20,15 @@ import { useToast } from '@chakra-ui/react';
 const ModalNewBbq = ({ isOpen, onClose }: ModalProps) => {
   const toast = useToast();
   const createNewBbq = async (event: FormEvent) => {
-    const newBbq = await getFormData(event);
+    const bbq = await getFormData(event);
     const uuid = uid();
+    const newBbq = {
+      title: bbq.title,
+      value: bbq.value,
+      description: bbq.description,
+      date: bbq.date,
+      participants: [{ name: '', value: 0 }],
+    };
 
     set(ref(db, `/${uuid}`), {
       newBbq,

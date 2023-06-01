@@ -28,7 +28,7 @@ const BbqCard = ({ barbecue }: any) => {
         height=" 192px"
       >
         <Box justifyContent="flex-start" w="100%">
-          <Heading>{format(new Date(barbecue.newBbq.date), 'dd/MM')}</Heading>
+          <Heading>{format(new Date(barbecue.newBbq!.date), 'dd/MM')}</Heading>
           <Text fontWeight="semibold" mt="3">
             {barbecue.newBbq.title}
           </Text>
@@ -36,7 +36,9 @@ const BbqCard = ({ barbecue }: any) => {
         <Flex justifyContent="space-around" w="100%" mt="10">
           <Flex alignItems="center">
             <Users size={24} color="#FFD836" />
-            <Text fontWeight="semibold">15</Text>
+            <Text fontWeight="semibold">
+              {barbecue.newBbq.participants.length - 1}
+            </Text>
           </Flex>
           <Flex alignItems="center">
             <CurrencyCircleDollar size={24} color="#FFD836" />
@@ -44,7 +46,11 @@ const BbqCard = ({ barbecue }: any) => {
           </Flex>
         </Flex>
       </Card>
-      <ModalBqqDetails barbecue={barbecue} onCloseModal={onClose} isOpenModal={isOpen} />
+      <ModalBqqDetails
+        barbecue={barbecue}
+        onCloseModal={onClose}
+        isOpenModal={isOpen}
+      />
     </>
   );
 };
