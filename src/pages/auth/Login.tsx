@@ -25,6 +25,17 @@ const Login = () => {
           duration: 5000,
           isClosable: true,
         });
+        const value = JSON.stringify(true);
+        sessionStorage.setItem('userLogged', value);
+      })
+      .then(() => {
+        const userIsLogged = sessionStorage.getItem('userLogged');
+        const valueStringget = JSON.parse(userIsLogged ?? '');
+        if (valueStringget) {
+          setTimeout(() => {
+            window.location.replace('/');
+          }, 2000);
+        }
       })
       .catch(() => {
         toast({
