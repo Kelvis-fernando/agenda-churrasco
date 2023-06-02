@@ -20,13 +20,37 @@ import {
   ParticipantsType,
 } from '../types/ModalBqqDetailsProps';
 import { format } from 'date-fns';
+import { ref, remove } from 'firebase/database';
+import { db } from '../firebase';
+import { useToast } from '@chakra-ui/react';
 
 const ModalBqqDetails = ({
   barbecue,
   isOpenModal,
   onCloseModal,
 }: ModalBqqDetailsProps) => {
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const deleteBarbecue = async (uuid: string) => {
+    await remove(ref(db, `/${uuid}`))
+      .then(() => {
+        toast({
+          title: 'Churras deletado com sucesso!',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
+        window.location.reload();
+      })
+      .catch(() => {
+        toast({
+          title: 'Erro ao deletar',
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+      });
+  };
 
   return (
     <>
@@ -96,8 +120,17 @@ const ModalBqqDetails = ({
               _hover={{ bgColor: 'rgba(255, 216, 54, 0.8)' }}
               fontWeight="bold"
               onClick={onOpen}
+              mr="3"
             >
               Participar
+            </Button>
+            <Button
+              bgColor="red.400"
+              _hover={{ bgColor: 'red.300' }}
+              fontWeight="bold"
+              onClick={() => deleteBarbecue(barbecue.uuid)}
+            >
+              Excluir
             </Button>
           </ModalFooter>
         </ModalContent>
