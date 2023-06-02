@@ -78,13 +78,14 @@ const ModalBqqDetails = ({
             </Flex>
             <Text mt="3">{barbecue.newBbq.description}</Text>
             {barbecue.newBbq.participants.map(
-              (participant: ParticipantsType) => (
+              (participant: ParticipantsType, index: number) => (
                 <Flex
                   mt="5"
                   pb="1"
                   borderBottom="1px solid #FFD836"
                   justifyContent="space-between"
                   display={participant.name !== '' ? 'flex' : 'none'}
+                  key={index}
                 >
                   <Radio
                     flexDirection="row"
