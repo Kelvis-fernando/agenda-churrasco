@@ -17,6 +17,7 @@ import { set, ref } from 'firebase/database';
 import { FormEvent } from 'react';
 import { getFormData } from '../utils/getFormData';
 import { useToast } from '@chakra-ui/react';
+
 const ModalNewBbq = ({ isOpen, onClose }: ModalProps) => {
   const toast = useToast();
   const createNewBbq = async (event: FormEvent) => {
