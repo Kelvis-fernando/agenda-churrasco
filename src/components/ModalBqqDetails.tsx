@@ -85,7 +85,7 @@ const ModalBqqDetails = ({
               </Text>
               <Text fontWeight="bold">
                 {barbecue.newBbq.participants
-                  .map((price: any) => Number(price.value))
+                  .map((price: { value: number }) => Number(price.value))
                   .reduce((total: number, actual: number) => {
                     return total + actual;
                   }, 0)
