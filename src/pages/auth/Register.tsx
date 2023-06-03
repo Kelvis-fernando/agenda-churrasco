@@ -8,40 +8,11 @@ import {
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import background from '../../assets/background.svg';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { FormEvent } from 'react';
-import { auth } from '../../firebase';
-import { useToast } from '@chakra-ui/react';
-import { getFormData } from '../../utils/getFormData';
+import useRegister from '../../hooks/auth/useRegister';
 
 const Register = () => {
-  const toast = useToast();
+  const { handleSubmitRegister } = useRegister();
 
-  const handleSubmitRegister = async (event: FormEvent) => {
-    const userData = await getFormData(event);
-
-    createUserWithEmailAndPassword(
-      auth,
-      userData.email.toString(),
-      userData.password.toString()
-    )
-      .then(() => {
-        toast({
-          title: 'Cadastro feito com sucesso!',
-          status: 'success',
-          duration: 5000,
-          isClosable: true,
-        });
-      })
-      .catch(() => {
-        toast({
-          title: 'Erro ao fazer o cadastro!',
-          status: 'error',
-          duration: 5000,
-          isClosable: true,
-        });
-      });
-  };
   return (
     <Box
       h="85vh"

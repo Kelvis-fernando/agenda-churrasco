@@ -8,35 +8,11 @@ import {
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import background from '../../assets/background.svg';
-import { sendPasswordResetEmail } from 'firebase/auth';
-import { useToast } from '@chakra-ui/react';
-import { FormEvent } from 'react';
-import { auth } from '../../firebase';
-import { getFormData } from '../../utils/getFormData';
+import useForgotPassword from '../../hooks/auth/useForgotPassword';
 
 const ForgotPassword = () => {
-  const toast = useToast();
-  const handleSubmitForgotPassword = async (event: FormEvent) => {
-    const userData = await getFormData(event);
+  const { handleSubmitForgotPassword } = useForgotPassword();
 
-    sendPasswordResetEmail(auth, userData.email.toString())
-      .then(() => {
-        toast({
-          title: 'Email enviado com sucesso!',
-          status: 'success',
-          duration: 5000,
-          isClosable: true,
-        });
-      })
-      .catch(() => {
-        toast({
-          title: 'Erro ao enviar o email!.',
-          status: 'error',
-          duration: 5000,
-          isClosable: true,
-        });
-      });
-  };
   return (
     <Box
       h="85vh"

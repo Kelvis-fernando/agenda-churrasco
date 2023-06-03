@@ -2,50 +2,10 @@ import { Box } from '@chakra-ui/layout';
 import { FormControl, FormLabel, Input, Button, Flex } from '@chakra-ui/react';
 import background from '../../assets/background.svg';
 import { Link } from 'react-router-dom';
-import { auth } from '../../firebase';
-import { FormEvent } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useToast } from '@chakra-ui/react';
-import { getFormData } from '../../utils/getFormData';
+import useLogin from '../../hooks/auth/useLogin';
 
 const Login = () => {
-  const toast = useToast();
-  const handleSubmitLogin = async (event: FormEvent) => {
-    const userData = await getFormData(event);
-
-    signInWithEmailAndPassword(
-      auth,
-      userData.email.toString(),
-      userData.password.toString()
-    )
-      .then(() => {
-        toast({
-          title: 'Login feito com sucesso!',
-          status: 'success',
-          duration: 5000,
-          isClosable: true,
-        });
-        const value = JSON.stringify(true);
-        sessionStorage.setItem('userLogged', value);
-      })
-      .then(() => {
-        const userIsLogged = sessionStorage.getItem('userLogged');
-        const valueStringget = JSON.parse(userIsLogged ?? '');
-        if (valueStringget) {
-          setTimeout(() => {
-            window.location.replace('/');
-          }, 2000);
-        }
-      })
-      .catch(() => {
-        toast({
-          title: 'Email ou senha incorretos.',
-          status: 'error',
-          duration: 5000,
-          isClosable: true,
-        });
-      });
-  };
+  const { handleSubmitLogin } = useLogin();
 
   return (
     <Box
