@@ -1,31 +1,10 @@
 import { Flex } from '@chakra-ui/react';
 import BbqCard from '../components/BbqCard';
 import AddNewBbq from '../components/AddNewBbq';
-import { onValue, ref } from 'firebase/database';
-import { db } from '../firebase';
-import { useEffect, useState } from 'react';
-import { BarbecueProps, Bbq } from '../types/BarbecueType';
+import useHome from '../hooks/useHome';
 
 const Home = () => {
-  const [barbecues, setBarbecues] = useState<BarbecueProps[]>([]);
-
-  const getBarbecues = () => {
-    onValue(ref(db), (snapshot) => {
-      const data = snapshot.val();
-      if (data !== null) {
-        const newBbqs: BarbecueProps[] = Object.values(data).map(
-          (bbq: any) => ({
-            newBbq: bbq as Bbq,
-          })
-        );
-        setBarbecues(newBbqs);
-      }
-    });
-  };
-
-  useEffect(() => {
-    getBarbecues();
-  }, []);
+  const { barbecues } = useHome();
 
   return (
     <>
