@@ -12,6 +12,7 @@ import { format } from 'date-fns';
 
 const BbqCard = ({ barbecue }: any) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
       <Card

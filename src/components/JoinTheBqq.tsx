@@ -10,37 +10,11 @@ import {
   ModalHeader,
   ModalOverlay,
 } from '@chakra-ui/react';
-import { get, ref, update } from 'firebase/database';
-import { FormEvent } from 'react';
-import { db } from '../firebase';
-import { getFormData } from '../utils/getFormData';
 import { JoinTheBbqProps } from '../types/JoinTheBbq';
+import useJoinTheBbq from '../hooks/useJoinTheBbq';
 
 const JoinTheBbq = ({ isOpen, onClose, barbecue }: JoinTheBbqProps) => {
-  const addParticipantToBarbecue = async (event: FormEvent) => {
-    const data = await getFormData(event);
-    const snapshot = await get(ref(db, `/${barbecue.uuid}`));
-    const existingData = snapshot.val();
-
-    if (
-      existingData &&
-      existingData.newBbq &&
-      existingData.newBbq.participants
-    ) {
-      const updatedParticipants = [
-        ...existingData.newBbq.participants,
-        { name: data.name, value: data.value },
-      ];
-      const updatedData = {
-        ...existingData,
-        newBbq: {
-          ...existingData.newBbq,
-          participants: updatedParticipants,
-        },
-      };
-      update(ref(db, `/${barbecue.uuid}`), updatedData);
-    }
-  };
+  const { addParticipantToBarbecue } = useJoinTheBbq(barbecue);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
