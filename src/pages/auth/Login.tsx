@@ -13,9 +13,6 @@ const Login = () => {
         h="85vh"
         w="100%"
         minH="30%"
-        // backgroundImage={`url(${background})`}
-        // backgroundSize="100% auto"
-        // bgColor="#FFD836"
       >
         <form onSubmit={(event) => handleSubmitLogin(event)}>
           <FormControl
