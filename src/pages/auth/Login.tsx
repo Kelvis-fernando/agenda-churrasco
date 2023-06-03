@@ -1,6 +1,5 @@
 import { Box } from '@chakra-ui/layout';
 import { FormControl, FormLabel, Input, Button, Flex } from '@chakra-ui/react';
-import background from '../../assets/background.svg';
 import { Link } from 'react-router-dom';
 import useLogin from '../../hooks/auth/useLogin';
 import Spinning from '../../components/Spinning';
@@ -14,8 +13,9 @@ const Login = () => {
         h="85vh"
         w="100%"
         minH="30%"
-        backgroundImage={`url(${background})`}
-        backgroundSize="100% auto"
+        // backgroundImage={`url(${background})`}
+        // backgroundSize="100% auto"
+        // bgColor="#FFD836"
       >
         <form onSubmit={(event) => handleSubmitLogin(event)}>
           <FormControl

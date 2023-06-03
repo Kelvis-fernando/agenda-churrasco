@@ -16,6 +16,7 @@ import ForgotPassword from './pages/auth/ForgotPassword';
 export const App = () => {
   const userIsLogged = sessionStorage.getItem('userLogged');
   const valueStringget = userIsLogged && JSON.parse(userIsLogged);
+
   return (
     <ChakraProvider theme={theme}>
       <Flex
@@ -26,7 +27,7 @@ export const App = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Heading textAlign="center" mt="24">
+        <Heading textAlign="center" mt="20">
           Agenda de Churras
         </Heading>
         <Router>
