@@ -1,11 +1,12 @@
 import { useToast } from '@chakra-ui/react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { FormEvent } from 'react';
+import { FormEvent, useState } from 'react';
 import { auth } from '../../firebase';
 import { getFormData } from '../../utils/getFormData';
 
 const useLogin = () => {
   const toast = useToast();
+  const [isLoaing, setIsloading] = useState<boolean>(false);
 
   const handleSubmitLogin = async (event: FormEvent) => {
     const userData = await getFormData(event);
@@ -25,10 +26,12 @@ const useLogin = () => {
         sessionStorage.setItem('userLogged', value);
       })
       .then(() => {
+        setIsloading(true);
         const userIsLogged = sessionStorage.getItem('userLogged');
         const valueStringget = JSON.parse(userIsLogged ?? '');
         if (valueStringget) {
           setTimeout(() => {
+            setIsloading(false);
             window.location.replace('/');
           }, 2000);
         }
@@ -43,7 +46,7 @@ const useLogin = () => {
       });
   };
 
-  return { handleSubmitLogin };
+  return { handleSubmitLogin, isLoaing };
 };
 
 export default useLogin;

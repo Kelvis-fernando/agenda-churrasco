@@ -2,9 +2,10 @@ import { Flex } from '@chakra-ui/react';
 import BbqCard from '../components/BbqCard';
 import AddNewBbq from '../components/AddNewBbq';
 import useHome from '../hooks/useHome';
+import Spinning from '../components/Spinning';
 
 const Home = () => {
-  const { barbecues } = useHome();
+  const { barbecues, isLoaing } = useHome();
 
   return (
     <>
@@ -15,6 +16,7 @@ const Home = () => {
           ))}
         <AddNewBbq />
       </Flex>
+      {isLoaing && <Spinning />}
     </>
   );
 };

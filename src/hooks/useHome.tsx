@@ -5,8 +5,10 @@ import { BarbecueProps, BarbecueType } from '../types/BarbecueType';
 
 const useHome = () => {
   const [barbecues, setBarbecues] = useState<BarbecueProps[]>([]);
+  const [isLoaing, setIsloading] = useState<boolean>(false);
 
   const getBarbecues = () => {
+    setIsloading(true);
     onValue(ref(db), (snapshot) => {
       const data = snapshot.val();
       if (data !== null) {
@@ -17,6 +19,7 @@ const useHome = () => {
         );
         setBarbecues(newBbqs);
       }
+      setIsloading(false);
     });
   };
 
@@ -24,7 +27,7 @@ const useHome = () => {
     getBarbecues();
   }, []);
 
-  return { barbecues };
+  return { barbecues, isLoaing };
 };
 
 export default useHome;
