@@ -9,11 +9,7 @@ const Login = () => {
 
   return (
     <>
-      <Box
-        h="85vh"
-        w="100%"
-        minH="30%"
-      >
+      <Box h="85vh" w="100%" minH="30%">
         <form onSubmit={(event) => handleSubmitLogin(event)}>
           <FormControl
             mt={100}
@@ -34,6 +30,7 @@ const Login = () => {
               minW="300"
               borderRadius="sm"
               name="email"
+              id="email"
             />
             <FormLabel fontWeight="bold">Senha</FormLabel>
             <Input
@@ -45,6 +42,7 @@ const Login = () => {
               w="50%"
               borderRadius="sm"
               name="password"
+              id="password"
             />
             <Button
               mt="5"
