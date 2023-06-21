@@ -9,8 +9,9 @@ import {
 import { Users, CurrencyCircleDollar } from '@phosphor-icons/react';
 import ModalBqqDetails from './ModalBqqDetails';
 import { format } from 'date-fns';
+import { BarbecueType } from '../types/BarbecueType';
 
-const BbqCard = ({ barbecue }: any) => {
+const BbqCard = ({ newBbq }: BarbecueType) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -29,26 +30,24 @@ const BbqCard = ({ barbecue }: any) => {
         height=" 192px"
       >
         <Box justifyContent="flex-start" w="100%">
-          <Heading>{format(new Date(barbecue.newBbq!.date), 'dd/MM')}</Heading>
+          <Heading>{format(new Date(newBbq!.date), 'dd/MM')}</Heading>
           <Text fontWeight="semibold" mt="3">
-            {barbecue.newBbq.title}
+            {newBbq!.title}
           </Text>
         </Box>
         <Flex justifyContent="space-around" w="100%" mt="10">
           <Flex alignItems="center">
             <Users size={24} color="#FFD836" />
-            <Text fontWeight="semibold">
-              {barbecue.newBbq.participants.length - 1}
-            </Text>
+            <Text fontWeight="semibold">{newBbq!.participants.length - 1}</Text>
           </Flex>
           <Flex alignItems="center">
             <CurrencyCircleDollar size={24} color="#FFD836" />
-            <Text fontWeight="semibold">R${barbecue.newBbq.value}</Text>
+            <Text fontWeight="semibold">R${newBbq!.value}</Text>
           </Flex>
         </Flex>
       </Card>
       <ModalBqqDetails
-        barbecue={barbecue}
+        barbecue={newBbq}
         onCloseModal={onClose}
         isOpenModal={isOpen}
       />

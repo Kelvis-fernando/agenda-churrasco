@@ -32,30 +32,31 @@ const ModalBqqDetails = ({
 
   return (
     <>
-      <Modal isOpen={isOpenModal} onClose={onCloseModal}>
+      <Modal
+        isOpen={isOpenModal !== undefined && isOpenModal}
+        onClose={onCloseModal}
+      >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Churras</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Flex justifyContent="space-between" alignItems="center">
-              <Heading>
-                {format(new Date(barbecue.newBbq.date), 'dd/MM')}
-              </Heading>
+              <Heading>{format(new Date(barbecue.date), 'dd/MM')}</Heading>
               <Flex>
                 <Users size={24} color="#FFD836" />
-                <Text>{barbecue.newBbq.participants.length - 1}</Text>
+                <Text>{barbecue.participants.length - 1}</Text>
               </Flex>
             </Flex>
             <Flex justifyContent="space-between" alignItems="center">
-              <Heading fontSize="26">{barbecue.newBbq.title}</Heading>
+              <Heading fontSize="26">{barbecue.title}</Heading>
               <Flex>
                 <CurrencyCircleDollar size={24} color="#FFD836" />
-                <Text>R${barbecue.newBbq.value}</Text>
+                <Text>R${barbecue.value}</Text>
               </Flex>
             </Flex>
-            <Text mt="3">{barbecue.newBbq.description}</Text>
-            {barbecue.newBbq.participants.map(
+            <Text mt="3">{barbecue.description}</Text>
+            {barbecue.participants.map(
               (participant: ParticipantsType, index: number) => (
                 <Flex
                   mt="5"
@@ -84,7 +85,7 @@ const ModalBqqDetails = ({
                 Total
               </Text>
               <Text fontWeight="bold">
-                {barbecue.newBbq.participants
+                {barbecue.participants
                   .map((price: { value: number }) => Number(price.value))
                   .reduce((total: number, actual: number) => {
                     return total + actual;

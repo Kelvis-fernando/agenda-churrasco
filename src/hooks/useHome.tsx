@@ -1,10 +1,10 @@
 import { onValue, ref } from 'firebase/database';
 import { useState, useEffect } from 'react';
 import { db } from '../firebase';
-import { BarbecueProps, BarbecueType } from '../types/BarbecueType';
+import { BarbecueType } from '../types/BarbecueType';
 
 const useHome = () => {
-  const [barbecues, setBarbecues] = useState<BarbecueProps[]>([]);
+  const [barbecues, setBarbecues] = useState<BarbecueType[]>();
   const [isLoaing, setIsloading] = useState<boolean>(false);
 
   const getBarbecues = (id?: string) => {
@@ -12,17 +12,20 @@ const useHome = () => {
     onValue(ref(db), (snapshot) => {
       const data = snapshot.val();
       if (data !== null) {
-        const newBbqs: BarbecueProps[] = Object.values(data).map(
-          (bbq: unknown) => ({
-            newBbq: bbq as BarbecueType,
-          })
+        const newBbqs = Object.values(data).map(
+          (bbq: unknown) => bbq as BarbecueType
         );
 
         if (id) {
-          const desiredBbq: any = newBbqs.find(
-            (bbq) => bbq.newBbq !== undefined && bbq.newBbq.uuid === id
+          const desiredBbq: BarbecueType | undefined = newBbqs.find(
+            (bbq: BarbecueType) => bbq.newBbq.uuid === id
           );
-          return setBarbecues(desiredBbq);
+
+          if (desiredBbq) {
+            setBarbecues([desiredBbq]);
+          } else {
+            setBarbecues([]);
+          }
         } else {
           setBarbecues(newBbqs);
         }

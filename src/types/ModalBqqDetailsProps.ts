@@ -1,16 +1,9 @@
+import { BarbecueType } from './BarbecueType';
+
 export interface ModalBqqDetailsProps {
   isOpenModal: boolean;
   onCloseModal: () => void;
-  barbecue: {
-    uuid: string;
-    newBbq: {
-      date: string;
-      title: string;
-      participants: ParticipantsType[];
-      value: string;
-      description: string;
-    };
-  };
+  barbecue: BarbecueType;
 }
 
 export interface ParticipantsType {
