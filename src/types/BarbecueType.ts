@@ -1,4 +1,5 @@
 export interface BarbecueType {
+  uuid: string;
   title: string;
   description: string;
   value: number;
