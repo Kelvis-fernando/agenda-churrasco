@@ -7,7 +7,7 @@ const useHome = () => {
   const [barbecues, setBarbecues] = useState<BarbecueProps[]>([]);
   const [isLoaing, setIsloading] = useState<boolean>(false);
 
-  const getBarbecues = () => {
+  const getBarbecues = (id?: string) => {
     setIsloading(true);
     onValue(ref(db), (snapshot) => {
       const data = snapshot.val();
@@ -17,8 +17,17 @@ const useHome = () => {
             newBbq: bbq as BarbecueType,
           })
         );
-        setBarbecues(newBbqs);
+
+        if (id) {
+          const desiredBbq: any = newBbqs.find(
+            (bbq) => bbq.newBbq !== undefined && bbq.newBbq.uuid === id
+          );
+          return setBarbecues(desiredBbq);
+        } else {
+          setBarbecues(newBbqs);
+        }
       }
+
       setIsloading(false);
     });
   };
@@ -27,7 +36,7 @@ const useHome = () => {
     getBarbecues();
   }, []);
 
-  return { barbecues, isLoaing };
+  return { barbecues, isLoaing, getBarbecues };
 };
 
 export default useHome;
