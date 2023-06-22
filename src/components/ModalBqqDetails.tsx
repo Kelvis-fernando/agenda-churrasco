@@ -24,6 +24,7 @@ import useModalBqqDetails from '../hooks/useModalBqqDetails';
 
 const ModalBqqDetails = ({
   barbecue,
+  id,
   isOpenModal,
   onCloseModal,
 }: ModalBqqDetailsProps) => {
@@ -115,7 +116,7 @@ const ModalBqqDetails = ({
           </ModalFooter>
         </ModalContent>
       </Modal>
-      <JoinTheBbq isOpen={isOpen} onClose={onClose} barbecue={barbecue} />
+      <JoinTheBbq isOpen={isOpen} onClose={onClose} barbecue={barbecue} id={id} />
     </>
   );
 };

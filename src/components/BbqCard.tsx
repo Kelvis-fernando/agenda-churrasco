@@ -11,7 +11,7 @@ import ModalBqqDetails from './ModalBqqDetails';
 import { format } from 'date-fns';
 import { BarbecueType } from '../types/BarbecueType';
 
-const BbqCard = ({ newBbq }: BarbecueType) => {
+const BbqCard = ({ newBbq, uuid }: BarbecueType) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -48,6 +48,7 @@ const BbqCard = ({ newBbq }: BarbecueType) => {
       </Card>
       <ModalBqqDetails
         barbecue={newBbq}
+        id={uuid}
         onCloseModal={onClose}
         isOpenModal={isOpen}
       />

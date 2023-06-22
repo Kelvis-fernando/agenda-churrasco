@@ -13,8 +13,8 @@ import {
 import { JoinTheBbqProps } from '../types/JoinTheBbq';
 import useJoinTheBbq from '../hooks/useJoinTheBbq';
 
-const JoinTheBbq = ({ isOpen, onClose, barbecue }: JoinTheBbqProps) => {
-  const { addParticipantToBarbecue } = useJoinTheBbq(barbecue);
+const JoinTheBbq = ({ isOpen, onClose, barbecue, id }: JoinTheBbqProps) => {
+  const { addParticipantToBarbecue } = useJoinTheBbq(id);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>

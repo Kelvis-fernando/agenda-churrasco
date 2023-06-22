@@ -13,7 +13,16 @@ const Home = () => {
       <Flex justifyContent="center" flexWrap="wrap" mt="10">
         {barbecues &&
           barbecues.map((barbecue: BarbecueType, index: number) => (
-            <BbqCard key={index} newBbq={barbecue.newBbq} uuid={''} title={''} description={''} value={0} date={''} participants={[]} />
+            <BbqCard
+              key={index}
+              newBbq={barbecue.newBbq}
+              uuid={barbecue.uuid}
+              title={''}
+              description={''}
+              value={0}
+              date={''}
+              participants={[]}
+            />
           ))}
         <AddNewBbq />
       </Flex>

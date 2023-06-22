@@ -4,11 +4,12 @@ import { db } from '../firebase';
 import { getFormData } from '../utils/getFormData';
 import { useToast } from '@chakra-ui/react';
 
-const useJoinTheBbq = (barbecue: { uuid: string }) => {
+const useJoinTheBbq = (id: string) => {
   const toast = useToast();
+
   const addParticipantToBarbecue = async (event: FormEvent) => {
     const data = await getFormData(event);
-    const snapshot = await get(ref(db, `/${barbecue.uuid}`));
+    const snapshot = await get(ref(db, `/${id}`));
     const existingData = snapshot.val();
 
     if (
@@ -20,15 +21,15 @@ const useJoinTheBbq = (barbecue: { uuid: string }) => {
         ...existingData.newBbq.participants,
         { name: data.name, value: data.value },
       ];
+
       const updatedData = {
-        ...existingData,
-        newBbq: {
-          ...existingData.newBbq,
-          participants: updatedParticipants,
-        },
+        ...existingData.newBbq,
+        participants: updatedParticipants,
       };
-      update(ref(db, `/${barbecue.uuid}`), updatedData)
-        .then(() => {
+
+      update(ref(db, `/${id}`), updatedData)
+        .then((result) => {
+          console.log(result);
           toast({
             title: 'Entrou no churrasco com sucesso!',
             status: 'success',
